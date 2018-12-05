@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body{
+			height: 5000px;
+		}
+	</style>
+</head>
+<body>
+</body>
+</html>
+<script>
+	window.onscroll = function(){
+		var scrollTop = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset || 0;
+		document.title = scrollTop;
+		console.log(document.title)
+	}
+</script>

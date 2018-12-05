@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		img{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 99px;
+		}
+	</style>
+</head>
+<body>
+	<img src="img.jpg" alt="">
+</body>
+</html>
+<script>
+	// var img = document.getElementsByTagName('img')[0];
+	// var leaderX = 0,leaderY = 0;
+	// var targetX = 0,targetY = 0;
+	// var timer = null;
+	// document.onclick = function(event){
+	// 	clearInterval(timer);
+	// 	var event = event || window.event;
+	// 	targetX = event.clientX;
+	// 	targetY = event.clientY;
+	// 	timer = setInterval(play,10);
+	// }
+	
+	// function play(){
+	// 	leaderX = leaderX + (targetX - leaderX)/10;
+	// 	leaderY = leaderY + (targetY - leaderY)/10;
+	// 	img.style.left = leaderX - img.offsetWidth/2 + "px";
+	// 	img.style.top = leaderY - img.offsetHeight/2 + "px";
+	// }
+
+	//面向原型思想
+	function Img() {
+		this.name = document.getElementsByTagName('img')[0];
+		this.leaderX = 0,this.leaderY = 0;
+		this.targetX = 0,this.targetY = 0;
+		this.timer = null;
+	}
+	Img.prototype.init = function() {
+		var that = this;
+		document.onclick = function(event){
+			clearInterval(this.timer);
+			var event = event || window.event;
+			this.timer = setInterval(function(){
+				this.targetX = event.clientX;
+				this.targetY = event.clientY;
+				that.play(this.targetX,this.targetY)
+			},10);
+		}
+	}
+	Img.prototype.play = function(x,y) {
+		this.leaderX = this.leaderX + (x - this.leaderX)/10;
+		this.leaderY = this.leaderY + (y - this.leaderY)/10;
+		this.name.style.left = this.leaderX - this.name.offsetWidth/2 + "px";
+		this.name.style.top = this.leaderY - this.name.offsetHeight/2 + "px";
+	}
+	var Img = new Img("img");
+	Img.init();
+</script>

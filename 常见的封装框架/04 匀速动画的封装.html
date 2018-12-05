@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+			position: absolute;
+			left: 0;
+			width: 100px;
+			height: 100px;
+			background-color: green;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn1">200</button>
+	<button id="btn2">400</button>
+	<div id="box"></div>
+</body>
+</html>
+<script>
+	var btn = document.getElementsByTagName('button')[0];
+	var box = document.getElementById('box');
+	btn1.onclick = function(){
+		animate(box,200)
+	}
+	btn2.onclick = function(){
+		animate(box,400)
+	}
+	// 开始匀速动画部分
+	function animate(obj,target){
+		clearInterval(obj.timer);
+		var speed = obj.offsetLeft<target ? 5 : -5;
+		obj.timer = setInterval(function(){
+			// offsetLeft+step
+			obj.style.left = obj.offsetLeft + speed + "px";
+			var result = obj.offsetLeft - target;
+			console.log(Math.abs(result))
+			if(Math.abs(result)<=5){
+				clearInterval(obj.timer);
+				obj.style.left = target + "px";
+			}
+		},10)
+	}
+</script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			background:url(images/1.jpg) no-repeat;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var ops = document.getElementById('ops');
+			var bg = document.getElementById('bg');
+			ops.onchange = function(){
+				bg.style.background = "url(images/"+this.value+".jpg) no-repeat";
+			}
+		}
+	</script>
+</head>
+<body id="bg">
+	<select name="" id="ops">
+		<option value="1">蓝天</option>
+		<option value="2">小熊</option>
+		<option value="3">地面</option>
+	</select>
+</body>
+</html>

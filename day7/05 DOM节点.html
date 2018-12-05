@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<ul id="ul">
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+	</ul>
+</body>
+</html>
+<script>
+	var ul = document.getElementById('ul');
+	//childNodes
+	var lis = ul.childNodes;
+	// alert(lis.length)  //11   5+2+4
+	for(var k in lis){
+		// nodeType判断节点
+		console.log(lis[k].nodeType)
+		if(lis[k].nodeType == 1){  //通过判断子节点的nodeType来确定li   换行符的nodeType==3;
+			lis[k].style.backgroundColor = "red";
+		}
+	}
+	//firstElementChild
+	ul.firstElementChild.style.backgroundColor = "blue";
+
+	//lastElementChild
+	ul.lastElementChild.style.backgroundColor = "yellow";
+
+	//nextElementSibling
+	var firstChild = ul.firstElementChild;
+	firstChild.nextElementSibling.style.backgroundColor = "green";
+
+	//previousElementSibling
+	var lastChild = ul.lastElementChild;
+	lastChild.previousElementSibling.style.backgroundColor = "black";
+
+	// parentNode
+	firstChild.parentNode.style.listStyle = "none";
+
+	// appendChild
+	var appendLi = document.createElement('li');
+	appendLi.style.backgroundColor = "orange";
+	appendLi.innerHTML = 6;
+	ul.appendChild(appendLi);
+
+	// insertBefore
+	var insertLi = document.createElement('li');
+	insertLi.style.backgroundColor = "purple";
+	insertLi.innerHTML = "我是插在2之前的li";
+	ul.insertBefore(insertLi,lis[3]);
+
+	//removeChild
+	newLis = ul.children;
+	ul.removeChild(newLis[5]);
+
+	// 克隆节点
+	var ulClone = ul.cloneNode(true);  //表示深层复制,连同子节点一起复制
+	document.body.appendChild(ulClone);
+
+	var ulClone = ul.cloneNode(false); //表示浅层复制,表示只复制当前节点
+	document.body.appendChild(ulClone);
+</script>

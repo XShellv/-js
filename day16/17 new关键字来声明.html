@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	function Love(name,age) {
+		// body...
+		this.name = name;
+		this.age = age;
+	}
+	Love.prototype.showName = function(){
+		alert("我爱"+this.name);
+	}
+	Love.prototype.showYear = function(){
+		alert(this.age+"年");
+	}
+	var love1 = new Love("刘巧玲",1000);
+	var love2 = new Love("刘巧玲",1000);
+	love1.showName();
+	love2.showYear();
+	alert(love1.showName == love2.showName)
+</script>

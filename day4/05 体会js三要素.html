@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id = "test" class="test"></div>
+	<button id="btn">改变宽度</button>
+</body>
+</html>
+<script>
+	var test = document.getElementById('test');
+	var btn = document.getElementById("btn");
+	test.style.width = 200+"px";
+	test.style.height = 200+"px";
+	test.style.backgroundColor = "pink";
+
+	btn.onclick = function(){
+		test.style.width = 400+"px";
+	}
+</script>

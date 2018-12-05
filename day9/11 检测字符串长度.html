@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	var txt = "what are you 弄啥咧!好的";
+	function getString(string){
+		var len = 0;
+		for(var k in string){
+			var code = string.charCodeAt(k);
+			if(code>=0 && code<=127){
+				len++;
+			}
+			else{
+				len+=2;
+			}
+		}
+		return len;
+	}
+	console.log(getString(txt));
+</script>

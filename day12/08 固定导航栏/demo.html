@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src = "../scroll().js"></script>
+	<style>
+		*{margin: 0;padding:0}
+		.main{
+			margin: 0 auto;
+			width: 1000px;
+			margin-top: 10px;
+		}
+		.fixed{
+			position: fixed;
+			left: 0;
+			top: 0;
+		}
+		img{
+			vertical-align: top;
+		}
+	</style>
+</head>
+<body>
+	<div class="top" id="top"><img src="images/top.png" alt=""></div>
+	<div id="nav"><img src="images/nav.png" alt=""></div>
+	<div class="main"><img src="images/main.png" alt=""></div>
+</body>
+</html>
+<script>
+	var top = document.getElementById('top');
+	var nav = document.getElementById('nav');
+	navTop = nav.offsetTop;
+	window.onscroll = function(){
+		var scrollTop = scroll().top;
+		console.log(scrollTop);
+		if(scrollTop >=navTop){
+			nav.className = "fixed";
+		}
+		else{
+			nav.className = "";
+		}
+	}
+</script>

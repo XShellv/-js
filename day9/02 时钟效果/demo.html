@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			position: relative;
+			width: 600px;
+			height: 600px;
+			margin: 50px auto;
+			background:url(images/clock.jpg) no-repeat;
+		}
+		.h,.m,.s{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+		}
+		.h{
+			background:url(images/hour.png) no-repeat center;
+		}
+		.m{
+			background:url(images/minute.png) no-repeat center;
+		}
+		.s{
+			background:url(images/second.png) no-repeat center;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="clock" id="clo"></div>
+		<div class="h" id="h"></div>
+		<div class="m" id="m"></div>
+		<div class="s" id="s"></div>
+	</div>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		function $(id){return document.getElementById(id);}
+		setInterval(time,10);
+		function time(){
+			var Milliseconds = new Date().getMilliseconds(); //获得毫秒数秒数
+			var seconds = new Date().getSeconds() + Milliseconds/1000;
+			var minutes = new Date().getMinutes() + seconds/60;
+			var hours = new Date().getHours() + minutes/60;
+			$("s").style.WebkitTransform = "rotate("+seconds*6+"deg)";
+			$("m").style.WebkitTransform = "rotate("+minutes*6+"deg)";
+			$("h").style.WebkitTransform = "rotate("+hours*30+"deg)";
+		}
+		
+	}
+</script>

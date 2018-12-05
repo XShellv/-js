@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src = "07 类的封装框架(getClass()).js"></script>
+	<script>
+		window.onload = function(){
+			var demo = getClass("demo")[0];
+			
+			// setAttribute
+			demo.setAttribute("class","index");
+			var lis = demo.children;
+			alert(lis.length)
+			lis[1].setAttribute("class","second")
+
+			// getAttribute
+			alert(lis[1].getAttribute("class"))
+
+			// removeAttribute
+			demo.removeAttribute("class");
+		}
+		
+	</script>
+	<title>
+		<Document></Document>
+	</title>
+</head>
+<body>
+	<div>
+		<ul class="demo">
+			<li></li>
+			<li"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

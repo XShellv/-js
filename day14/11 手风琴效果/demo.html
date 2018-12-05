@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="多属性缓动封装.js"></script>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+			position: relative;
+			width: 1170px;
+			height: 400px;
+			margin: 100px auto;
+			border: 1px solid red;
+			overflow: hidden;
+		}
+		ul{
+			width: 1300px;
+			position: absolute;
+			list-style: none;
+		}
+		ul li{
+			float: left;
+			width: 240px;
+			height: 400px;
+			overflow: hidden;
+		}
+		img{
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="pics">
+			<li><img src="images/1.jpg" alt=""></li>
+			<li><img src="images/2.jpg" alt=""></li>
+			<li><img src="images/3.jpg" alt=""></li>
+			<li><img src="images/4.jpg" alt=""></li>
+			<li><img src="images/5.jpg" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>
+<script>
+	var pics = document.getElementById('pics').children;
+	var box = document.getElementById('box')
+	for(var i = 0;i<pics.length;i++){
+		this.index = i
+		pics[i].onmouseover = function(){
+			for(var i = 0;i<pics.length;i++){
+				animate(pics[i],{"width":100})
+			}
+			animate(this,{"width":800})
+		}
+	}
+	box.onmouseout = function(){
+	for(var i = 0;i<pics.length;i++){
+			animate(pics[i],{"width":240})
+		}
+	}
+</script>

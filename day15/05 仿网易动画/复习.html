@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="多属性缓动封装.js"></script>
+	<style>
+	*{margin: 0;padding: 0;}
+	#demo{
+		position: relative;
+		width: 310px;
+		margin: 100px auto;
+		overflow: hidden;
+	}
+	.slider{
+		position: relative;
+		width: 200%;
+		height: 220px;
+	}
+	.slider div{
+		position: absolute;
+		left: 0;
+	}
+	.arr{
+		text-align: center;
+	}
+	.arr .ctrl{
+		display: inline-block;
+		text-indent: -20em;
+		width: 24px;
+		height: 20px;
+		overflow: hidden;
+		background: url(images/icon.png) no-repeat -24px -782px;
+		margin: 0 5px;
+		cursor: pointer;
+	}
+	#demo .arr .current{
+		background: url(images/icon.png) no-repeat -24px -762px;
+	}
+	.pre,.next{
+		position: absolute;
+		cursor: pointer;
+		width: 30px;
+		height: 35px;
+		top: 50%;
+		margin-top: -17.5px;
+	}
+	.pre{
+		left: 0;
+		background:url(images/icon.png)no-repeat 6px top;
+	}
+	.next{
+		right: 0;
+		background:url(images/icon.png)no-repeat -4px -44px;
+	}
+	.arr{
+		width: 100%;
+		height: 24px;
+		padding-top: 5px;
+		line-height: 24px;
+	}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<div class="slider" id="slider">
+			<div class="item"><a href="#"><img src="images/1.jpg" alt=""></a></div>
+			<div class="item"><a href="#"><img src="images/2.jpg" alt=""></a></div>
+			<div class="item"><a href="#"><img src="images/3.jpg" alt=""></a></div>
+			<div class="item"><a href="#"><img src="images/4.jpg" alt=""></a></div>
+			<div class="item"><a href="#"><img src="images/5.jpg" alt=""></a></div>
+			<div class="item"><a href="#"><img src="images/6.jpg" alt=""></a></div>
+		</div>
+		<div class="arr" id="arr">
+			<span class="pre" id="pre"></span>
+			<span class="next" id="next"></span>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	//创建多个span
+	var pics = $("slider").children;
+	var ctrls = []
+	for(var i = 0; i<pics.length;i++){
+		var span = document.createElement("span");
+		span.innerHTML = i+1;
+		i==0 ? span.className = "ctrl current" : span.className = "ctrl";
+		ctrls.push(span);
+		$("arr").insertBefore(span,$("next"));
+	}
+
+
+	// 第一张图片left 0,其余-310px
+	var clientWidth = $("demo").clientWidth;
+	for(var i = 0;i<pics.length;i++){
+		i==0 ? pics[i].style.left = 0 : pics[i].style.left = clientWidth + "px";
+	}
+
+
+	// 自动播放
+	var timer = null;
+	var key = 0; //控制播放的张数
+	var index = 0;
+	timer = setInterval(autoPlay,2000)
+	function autoPlay(){
+		// 一张图片缓缓划过，另一张图片迅速到left 310px 位置
+		// console.log(key)
+		animate(pics[key],{left:-clientWidth});
+		++key > pics.length-1 ? key=0 : key
+		pics[key].style.left = clientWidth + "px";
+		animate(pics[key],{left:0});
+		index = key;
+		square()
+	}
+
+
+	// 小方块控制
+	function square(){
+		for(var i = 0; i< ctrls.length;i++){
+			ctrls[i].className = "ctrl";
+		}
+		ctrls[index].className = "ctrl current";
+	}
+
+	// 鼠标经过和离开demo
+	$("demo").onmouseover = function(){
+		clearInterval(timer)
+	}
+	$("demo").onmouseout = function(){
+		timer = setInterval(autoPlay,2000)
+	}
+
+	// 鼠标点击滑动
+	var spans = $("arr").children;
+	for(var i = 0; i<spans.length;i++){
+		spans[i].onclick = function(){
+			if(this.className == "pre"){
+				animate(pics[key],{left:clientWidth});
+				--key <0 ? key=5 : key
+				pics[key].style.left = -clientWidth + "px";
+			}
+			else if(this.className == "next"){
+				animate(pics[key],{left:-clientWidth});
+				++key > pics.length-1 ? key=0 : key
+				pics[key].style.left = clientWidth + "px";
+			}
+			else{
+				// 当前图片划过去，目标图片准备滑动
+				var clickIndex = this.innerHTML -1;
+				if(clickIndex > key){
+					animate(pics[key],{left:-clientWidth});
+					pics[clickIndex].style.left = clientWidth + "px";
+				}
+				else if(clickIndex < key){
+					animate(pics[key],{left:clientWidth});
+					pics[clickIndex].style.left = -clientWidth + "px";
+				}
+				key = clickIndex;
+			}
+			animate(pics[key],{left:0});
+			index = key;
+			square()
+		}
+		
+	}
+</script>

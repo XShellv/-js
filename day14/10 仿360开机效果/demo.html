@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="多属性缓动封装.js"></script>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+			position: fixed;
+			right: 0;
+			bottom: 0;
+		}
+		span{
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 30px;
+			height: 20px;
+			cursor: pointer;
+		}
+		img{
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="t"><img src="images/t.jpg" alt=""></div>
+		<div class="b"><img src="images/b.jpg" alt=""></div>
+		<span id="close"></span>
+	</div>
+</body>
+</html>
+<script>
+	var close = document.getElementById('close');
+	var box = document.getElementById('box');
+	close.onclick = function(){
+		var bottom = -box.children[1].offsetHeight;
+		var right = -box.children[1].offsetWidth;
+		animate(box,{"bottom":bottom},function(){
+			animate(box,{"right":right})
+		});
+	}
+</script>

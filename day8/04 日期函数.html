@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	var time = new Date();
+	console.log(time) 
+
+	console.log(time.getTime());  //提倡使用
+	console.log(time.valueOf());  //得到 距离 1970年的毫秒数    
+
+	// 直接使用
+	console.log(Date.now())
+	console.log(+new Date())
+
+
+	// getDate()
+	console.log(time.getDate())  //获取日 1-31
+	// getDay()
+	console.log(time.getDay())   //0-6 获取礼拜
+	// getMonth()
+	console.log(time.getMonth()) //0-12 获取月
+	// getFullYear()
+	console.log(time.getFullYear()) //获取完整年份
+	// getHours()
+	console.log(time.getHours())  //获取小时 0-23
+	//getMinutes()
+	console.log(time.getMinutes()) //获取分钟
+	// getSeconds()
+	console.log(time.getSeconds()) //获取秒
+	//getMilliseconds()
+	console.log(time.getMilliseconds())//获取毫秒
+
+
+
+
+</script>

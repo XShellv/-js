@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<img src="images/jd1.png" alt="">
+</body>
+</html>
+<script>
+	var jd = document.getElementsByTagName('img')[0];
+	jd.onmouseover = function(){
+		jd.src = "images/jd2.png";
+	}
+	jd.onmouseout = function(){
+		jd.src = "images/jd1.png";
+	}
+</script>

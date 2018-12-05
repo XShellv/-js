@@ -1,0 +1,43 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body{
+			height: 3000px;
+		}
+	</style>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	// 兼容性问题，主要包括IE9以下，正常模式，怪异模式
+	function scroll(){
+		console.log(document.compatMode)
+		if(window.pageYOffset != null){ //  ie9+ 和其他浏览器
+			return {
+				"top":window.pageYOffset,
+				"left":window.pageXOffset
+			}
+		}
+		else if(document.compatMode == "CSS1Compat"){
+			// 声明的了 DTD
+            // 检测是不是怪异模式的浏览器 -- 就是没有 声明<!DOCTYPE html>
+			return {
+				"top":document.documentElement.scrollTop,
+				"left":document.documentElement.scrollLeft
+			}
+		}
+		return{ //怪异模式
+			"top":document.body.scrollTop,
+			"left":document.body.scrollLeft
+		}
+	}
+
+	window.onscroll = function(){
+		console.log(scroll().top)
+	}
+</script>

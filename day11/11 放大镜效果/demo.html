@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		.box1,.box2{
+			overflow: hidden;
+			border: 1px solid #ccc;
+			position: absolute;
+		}
+		#demo{
+			position: absolute;
+			left: 100px;
+			top:100px;
+		}
+		.box1{
+			width: 350px;
+			height: 350px;
+		}
+		.box1 span{
+			position: absolute;
+			display: none;
+			width: 100px;
+			height: 100px;
+			left: 0;
+			top: 0;
+			background-color: rgba(255,255,0,.4);
+			cursor: move;
+		}
+		.box2{
+			display: none;
+			width: 450px;
+			height: 450px;
+			left: 360px;
+		}
+		.box2 img{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<div class="box1" id="box1">
+			<img src="images/001.jpg" alt="">
+			<span></span>	
+		</div>
+		<div class="box2" id="box2">
+			<img  id="img" src="images/0001.jpg" alt="">
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	var demo = document.getElementById('demo');
+	var box1 = document.getElementById('box1');
+	var box2 = document.getElementById('box2');
+	var img = document.getElementById('img');
+	var span = document.getElementsByTagName('span')[0];
+
+	box1.onmouseover = function(){
+		span.style.display = "block";
+		box2.style.display = "block";
+		var that = this;
+		document.onmousemove = function(event){
+			var event = event || window.event;
+			var x = event.clientX-demo.offsetLeft-span.offsetWidth/2;
+			var y = event.clientY-demo.offsetTop-span.offsetHeight/2;
+			if(x<=0){x = 0;}
+			if(x>=that.offsetWidth - span.offsetWidth){x = that.offsetWidth - span.offsetWidth;}
+			if(y<=0){y = 0;}
+			if(y>=that.offsetWidth - span.offsetWidth){y = that.offsetWidth - span.offsetWidth;}
+			span.style.left = x + "px";
+			span.style.top = y + "px";
+			var imgX =  box2.offsetWidth/that.offsetWidth*(-x);
+			var imgY =  box2.offsetWidth/that.offsetWidth*(-y);
+			img.style.left = imgX + "px";
+			img.style.top = imgY + "px";
+			window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+		}
+
+	}
+	box1.onmouseout = function(){
+		span.style.display = "none";
+		box2.style.display = "none";
+	}
+</script>

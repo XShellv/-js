@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="多属性缓动封装.js"></script>
+	<style>
+		*{margin: 0;padding: 0;}
+		#demo{
+			width: 1200px;
+			height: 500px;
+			margin: 100px auto;
+		}
+		#slider{
+			position: relative;
+			width: 100%;
+		}
+		ul{
+			list-style: none;
+		}
+		ul li{
+			position: absolute;
+		}
+		img{
+			width: 100%;
+			vertical-align: middle;
+		}
+		#arr{
+			position: absolute;
+			top: 45px;
+			width: 1200px;
+			opacity: 0;
+		}
+		#arr span{
+			cursor: pointer;
+			width: 76px;
+			height: 112px;
+			background-color: #000;
+		}
+		#arr .pre{
+			float: left;
+			background: url(images/prev.png)no-repeat;
+		}
+		#arr .next{
+			float: right;
+			background: url(images/next.png)no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<div id="slider">
+			<ul>
+				<li><a href="#"><img src="images/slidepic1.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/slidepic2.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/slidepic3.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/slidepic4.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/slidepic5.jpg" alt=""></a></li>
+			</ul>
+		</div>
+		<div id="arr">
+			<span class="pre"></span>
+			<span class="next"></span>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	var jsonStyle = [
+		{width:600,top:70,left:0,opacity:0.8,zIndex:3},
+		{width:800,top:100,left:200,opacity:1,zIndex:4},
+		{width:600,top:70,left:600,opacity:0.8,zIndex:3},
+		{width:400,top:20,left:750,opacity:0.2,zIndex:2},
+		{width:400,top:20,left:50,opacity:0.2,zIndex:2}
+	]
+	var pics = $("slider").children[0].children;
+	for(var i = 0;i<pics.length;i++){
+		animate(pics[i],jsonStyle[i])
+	}
+
+	// 鼠标经过和离开箭头动画
+	$("demo").onmouseover = function(){
+		animate($("arr"),{opacity:1})
+	}
+	$("demo").onmouseout = function(){
+		animate($("arr"),{opacity:0})
+	}
+
+	// 点击箭头交换json
+	var arrs = $("arr").children;
+	for(var i = 0; i<arrs.length;i++){
+		var jieliu = true;
+		arrs[i].onclick = function(){
+			if(jieliu){
+				jieliu = false;
+				if(this.className == "pre"){
+					jsonStyle.push(jsonStyle.shift());
+				}
+				else{
+					jsonStyle.unshift(jsonStyle.pop());
+				}
+				change();
+			}
+		}
+	}
+	// 交换动画
+	function change(){
+		jieliu = false;
+		for(var i = 0;i<pics.length;i++){
+			animate(pics[i],jsonStyle[i],function(){jieliu = true})
+		}
+	}
+</script>

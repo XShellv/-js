@@ -1,0 +1,141 @@
+/*初始化*/
+html, body, ul, li, ol, dl, dd, dt, p, h1, h2, h3, h4, h5, h6, form, fieldset, legend, img { margin:0; padding:0; }
+fieldset, img,input,button { border:none; padding:0;margin:0;outline-style:none; }
+ul, ol { list-style:none; }
+input { padding-top:0; padding-bottom:0; font-family: "SimSun","宋体";}
+select, input { vertical-align:middle;}
+select, input, textarea { font-size:12px; margin:0; }
+textarea { resize:none; } /*防止拖动*/
+img {border:0;	vertical-align:middle; }  /*  去掉图片低测默认的3像素空白缝隙*/
+table { border-collapse:collapse; }
+body{
+	font: 12px/150% Arial,Verdana,"\5b8b\4f53";
+}
+.shortcut{
+	line-height: 30px;
+	width: 100%;	
+	height: 30px;	
+	color: #666;
+	background-color: #f1f1f1;
+}
+.w{
+	width: 1210px;	
+	overflow: hidden;
+	margin: 0 78px auto;
+
+}
+.fl{
+	float: left;
+}
+.fl .dt{
+	position: relative;
+	padding: 0 20px 0 10px;
+}
+ul{
+	list-style: none;
+	float: right;
+}
+ul li{
+	float: left;
+	padding: 0 10px;
+}
+ul li:first-child a{
+	color: #666;
+	text-decoration: none;
+}
+ul li:first-child a:hover{
+	color: #C81623;
+}
+ul li:first-child a.col-red{
+	color: #C81623;
+}
+ul li.fore{
+	position: relative;
+	padding: 0 20px 0 10px;
+}
+
+ul li em.tel{
+	position: absolute;
+	width: 15px;	
+	height: 20px;
+	left: 5px;	
+	top: 5px;
+	background-color: #000;
+	background:url(../images/sprite.png) no-repeat;
+}
+ul li.line{
+	width: 1px;	
+	height: 12px;
+	background-color:#ddd;
+	padding: 0;
+	margin-top: 9px;
+}
+.dt i,.fore i{
+	width: 15px;	
+	height: 7px;
+	overflow: hidden;
+	position: absolute;
+	font: 400 15px/15px "\5b8b\4f53";
+	top: 13px;
+	right: 3px;
+}
+ul li.tel-jd{
+	padding: 0 20px 0 25px;
+}
+s{
+	position: absolute;
+	top:-8px;
+	text-decoration: none;
+}
+.banner{
+	width: 100%;
+	height: 80px;
+	background-color: #8A25C6;
+
+}
+.tp{
+	position: relative;
+}
+.banner a.close{
+	position: absolute;
+	width: 19px;
+	height: 19px;
+	background:url(../images/close.png) no-repeat;
+	right: 0;
+	top: 5px;
+}
+
+.logo{
+	float: left;
+	position: relative;
+	width: 360px;
+	height: 75px;
+	padding-top: 25px;
+}
+.w .logo a.jd{
+	display: block;
+	text-indent: -2000em;
+	width: 270px;
+	height: 60px;
+	background:url(../images/logo.png) no-repeat;
+}
+.w .logo .dong{
+	position: absolute;
+	left: 168px;
+	top: 10px;
+}
+.w .search{
+	float: left;
+	padding-top: 25px;
+	width: 538px;
+	height: 75px;
+	background-color: purple;
+
+}
+.w .car{
+	float: right;
+	width: 139px;
+	height: 34px;
+	background-color: blue;
+	margin: 25px 65px 0 0 ;
+}

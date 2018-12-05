@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.box{
+			width: 100%;
+			height: 66px;
+			margin: 200px auto;
+			text-align: center;
+			color: red;
+			font-size: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box"></div>
+</body>
+</html>
+<script>
+	// 获取转化为分
+	var targetTime = new Date("2018/10/01").getTime();
+	console.log(new Date("1970/01/01").getTime())
+	var timer = setInterval(function(){
+		var nowTime = new Date().getTime();
+		
+		var timeTotal = (targetTime - nowTime)/1000;//时间戳差值以毫秒为单位。这里转化成秒
+
+		var secondTime = parseInt(timeTotal%60);
+		var minuteTime = parseInt(timeTotal/60%60);
+		var hourTime = parseInt(timeTotal/3600%24);
+		var dayTime = parseInt(timeTotal/86400);
+		// 如果数字小于10则加0
+		secondTime = secondTime <10 ?  ("0"+secondTime) : secondTime;
+		minuteTime = minuteTime <10 ?  ("0"+minuteTime) : minuteTime;
+		hourTime = hourTime <10 ?  ("0"+hourTime) : hourTime;
+		dayTime = dayTime <10 ?  ("0"+dayTime) : dayTime;
+
+		box.innerHTML = "距离国庆时间还有:"+dayTime+"天"+hourTime+"小时"+minuteTime+"分钟"+secondTime+"秒";
+	},1000)
+</script>

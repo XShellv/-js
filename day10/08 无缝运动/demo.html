@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		.box{
+			position: relative;
+			width: 600px;
+			height: 200px;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+		ul{
+			position: absolute;
+			left: 0;
+			top: 0;
+			list-style: none;
+			width: 5000px;
+		}
+		ul li{
+			float: left;
+		}
+		ul li img{
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<ul>
+			<li><img src="images/01.jpg" alt=""></li>
+			<li><img src="images/02.jpg" alt=""></li>
+			<li><img src="images/03.jpg" alt=""></li>
+			<li><img src="images/04.jpg" alt=""></li>
+			<li><img src="images/01.jpg" alt=""></li>
+			<li><img src="images/02.jpg" alt=""></li>
+		</ul>
+	</div>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		var pics = document.getElementsByTagName('ul')[0];
+		var box = document.getElementById('box');
+		var timer = null;
+		var num = 0;
+		timer = setInterval(play,10);
+		function play(){
+			num-=5;
+			num<=-1200 ? num = 0 : num;
+			pics.style.left = num+"px";
+		}
+		box.onmouseover = function(){
+			clearInterval(timer);
+		}
+		box.onmouseout = function(){
+			timer = setInterval(play,10);
+		}
+
+	}
+</script>

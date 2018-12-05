@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		body{
+			background-color: #000;
+		}
+		.nav{
+			position: relative;
+			width: 800px;
+			height: 42px;
+			border-radius: 5px;
+			margin: 100px auto;
+			background:url(images/rss.png) no-repeat right center #fff;
+		}
+		.nav ul{
+			position: absolute;
+			list-style: none;
+		}
+		.nav ul li{
+			cursor: pointer;
+			float: left;
+			text-align: center;
+			width: 83px;
+			line-height: 42px;
+		}
+		.cloud{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 83px;
+			height: 42px;
+			background:url(images/cloud.gif) no-repeat 0 0;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav">
+		<div class="cloud" id="clo"></div>
+		<ul id="ul">
+			<li>首页新闻</li>
+			<li>活动策划</li>
+			<li>企业文化</li>
+			<li>招聘信息</li>
+			<li>首页新闻</li>
+			<li>公司简介</li>
+			<li>上海校区</li>
+			<li>广州校区</li>
+		</ul>
+	</div>
+</body>
+</html>
+<script>
+	var clo = document.getElementById('clo');
+	var ul = document.getElementById('ul');
+	var lis = ul.children;
+	var timer = null;
+	var target = 0;
+	var leader = 0;
+	var current = 0;
+	for(var k in lis){
+		lis[k].index = k;
+		lis[k].onmouseover = function(){
+			target = this.offsetLeft;
+		}
+		lis[k].onclick = function(){
+			current = this.offsetLeft;
+		}
+		lis[k].onmouseout = function(){
+			target = current;
+		}
+	}
+	timer = setInterval(autoPlay,10);
+	function autoPlay(){
+		leader = leader + (target - leader)/10;
+		clo.style.left = leader + "px";
+	}
+	
+</script>

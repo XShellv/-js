@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="scroll().js"></script>
+	<style>
+		*{margin: 0;padding: 0;}
+		html,body{
+			width: 100%;
+			height: 100%;
+		}
+		ul,ol{
+			list-style: none;
+		}
+		ul{
+			width: 100%;
+			height: 100%;
+		}
+		ul li{
+			width: 100%;
+			height: 100%;
+		}
+		ol {
+			position: fixed;
+			top: 0;
+			left: 50px;
+		}
+		ol li{
+			width: 50px;
+			height: 50px;
+			border: 1px solid #000;
+		}
+	</style>
+</head>
+<body>
+	<ul id="ul">
+		<li>首页</li>
+		<li>关注</li>
+		<li>动态</li>
+		<li>风格</li>
+		<li>作品</li>
+	</ul>
+	<ol id="ol">
+		<li>首页</li>
+		<li>关注</li>
+		<li>动态</li>
+		<li>风格</li>
+		<li>作品</li>
+	</ol>
+</body>
+</html>
+<script>
+	var ul = document.getElementById('ul');
+	var ol = document.getElementById('ol');
+	var colors = ["purple","red","green","yellow","blue"];
+
+	var leaderTop = 0,targetTop = 0;
+	var timer = null;
+	for(var i = 0;i<ul.children.length;i++){
+		ul.children[i].style.backgroundColor = colors[i];
+		ol.children[i].style.backgroundColor = colors[i];
+		ol.children[i].index = i;
+		ol.children[i].onclick = function(){
+			clearInterval(timer)
+			targetTop = ul.children[this.index].offsetTop;
+			timer = setInterval(play,30);
+		}
+	}
+	function play(){
+		leaderTop = leaderTop + (targetTop - leaderTop)/10;
+		window.scrollTo(0,leaderTop);
+	}
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		#demo{
+			/*position: relative;*/
+			top: 0;
+			left: 0;
+			width: 600px;
+			height: 600px;
+			padding: 100px;
+			background-color: orange;
+		}
+		#box1{
+			width: 500px;
+			height: 500px;
+			margin: 100px;
+			margin-left: 30px;
+			background-color: red;
+		}
+		#box2{
+			/*position: absolute;*/
+			width: 200px;
+			height: 200px;
+			background-color: #000;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<div id="box1">
+			<div id="box2"></div>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	var box2 = document.getElementById('box2');
+	console.log(box2.offsetTop);
+	alert(box2.offsetParent.id);
+</script>

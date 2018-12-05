@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="多属性缓动封装.js"></script>
+	<style>
+		#demo{
+			position: relative;
+			width: 310px;
+			height: 265px;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+		#box1{
+			width: 100%;
+			height: 220px;
+		}
+		#slider{
+			width: 620px;
+			height: 220px;
+		}
+		img{
+			vertical-align: middle;
+		}
+		#slider div{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		#box2{
+		}
+		#box2 .ctrl-box{
+			text-align: center;
+			padding-top: 5px;
+			
+		}
+		.ctrl{
+			display: inline-block;
+			width: 24px;
+			height: 20px;
+			background:url(images/icon.png) no-repeat -24px -782px;
+			margin: 0 5px;
+			cursor: pointer;
+			text-indent: -20em;
+			overflow: hidden;
+		}
+		#box2 .current{
+			background:url(images/icon.png) no-repeat -24px -762px;
+		}
+		.pre,.next{
+			position: absolute;
+			cursor: pointer;
+			top: 50%;
+			margin-top: -35px;
+			width: 30px;
+			height: 35px;
+			background:url(images/icon.png) no-repeat 6px top;
+			
+		}
+		.next{
+			right: 0;
+			background:url(images/icon.png) no-repeat -4px -44px;
+		}
+		.pre{
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<div id="box1">
+			<div id="slider">
+				<div><a href="#"><img src="images/1.jpg" alt=""></a></div>
+				<div><a href="#"><img src="images/2.jpg" alt=""></a></div>
+				<div><a href="#"><img src="images/3.jpg" alt=""></a></div>
+				<div><a href="#"><img src="images/4.jpg" alt=""></a></div>
+				<div><a href="#"><img src="images/5.jpg" alt=""></a></div>
+				<div><a href="#"><img src="images/6.jpg" alt=""></a></div>
+			</div>
+		</div>
+		<div id="box2">
+			<div class="ctrl-box">
+				<span class="pre"></span>
+				<span class="ctrl current">1</span>
+				<span class="ctrl">2</span>
+				<span class="ctrl">3</span>
+				<span class="ctrl">4</span>
+				<span class="ctrl">5</span>
+				<span class="ctrl">6</span>
+				<span class="next"></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	var demo = document.getElementById('demo');
+	var pics = document.getElementById('slider').children;
+	var ctrls = document.getElementsByClassName("ctrl-box")[0].children;
+	// alert(pics.length)
+	for(var i = 0;i<pics.length;i++){
+		pics[i].style.left = 310 + "px";
+	}
+	pics[0].style.left = 0;
+
+	// 开始动画部分
+	var timer = null;
+	var key = 0;
+	
+	function autoplay(){                             
+		animate(pics[key],{left:-310});
+		++key > (pics.length -1) ? key = 0 : key;
+		pics[key].style.left = 310 + "px";
+		animate(pics[key],{left:0});
+		// span相应变色
+		square()
+	}
+
+
+	// 点击箭头变换
+	for(var i = 0;i<=ctrls.length-1;i++){
+		ctrls[i].onclick = function(){
+			if(this.className == "next"){
+				autoplay();
+			}
+			else if(this.className == "pre"){
+				animate(pics[key],{left:310});
+				--key <0 ? key = pics.length-1 : key;
+				pics[key].style.left = -310 + "px";
+				animate(pics[key],{left:0});
+			}
+			else{
+				var index = this.innerHTML - 1;
+				console.log(index,key)
+				if(index>key){
+					animate(pics[key],{left:-310});
+					pics[index].style.left = 310 + "px";
+				}
+				else if(index<key){
+					animate(pics[key],{left:310});
+					pics[index].style.left = -310 + "px";
+					
+				}
+				key = index;
+				animate(pics[index],{left:0});
+			}
+			square();
+		}
+	}
+
+	// 方块变色
+	function square(){
+		for(var i = 1;i<=ctrls.length-2;i++){
+			ctrls[i].className = "ctrl";
+		}
+		ctrls[key+1].className = "ctrl current";
+	}
+
+
+	demo.onmouseover = function(){
+		clearInterval(timer);
+	}
+	demo.onmouseout  = function(){
+		timer = setInterval(autoplay,1000);
+	}
+	timer = setInterval(autoplay,1000);
+</script>

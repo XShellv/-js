@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.current{
+			background-color: pink;
+		}
+	</style>
+	<script>
+		window.onload = function(){
+			var btns = document.getElementsByTagName('button');
+			for(var k in btns){
+				btns[k].onclick = function(){
+					for(var i in btns){
+						btns[i].className = "";
+					}
+					this.className="current";
+				}
+			}
+		}
+	</script>
+</head>
+<body>
+	<div class="box">
+		<button>思想原理</button>
+		<button>思想原理</button>
+		<button>思想原理</button>
+		<button>思想原理</button>
+		<button>思想原理</button>
+		<button>思想原理</button>
+	</div>
+</body>
+</html>

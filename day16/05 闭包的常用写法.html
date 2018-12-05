@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	function outFun(){
+		var a = 0;
+		return function(){
+			a++;
+			console.log(a);
+		}
+	}
+	var obj1 = outFun();
+	obj1();obj1()
+	var obj2 = outFun();
+	obj2();obj2()
+</script>

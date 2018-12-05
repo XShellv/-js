@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	var PI = 145.817623;
+	// 方法一：
+	var str = PI+"";
+	console.log(str.substr(0,str.indexOf(".")+3));   //145.81
+	//方法二：
+	console.log(parseInt(PI*100)/100)     //145.81
+	//方法三：
+	console.log(PI.toFixed(2))  //包含四舍五入 //145.82
+</script>

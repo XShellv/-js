@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0}
+		.demo{
+			width: 490px;
+			height: 170px;
+			padding: 5px;
+			border: 1px solid #ccc;
+			margin: 100px auto;
+			overflow: hidden;
+		}
+		.box{
+			position: relative;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		ul{
+			position: absolute;
+			width: 1000%;
+			left: 0;
+			top: 0;
+			list-style: none;
+		}
+		ul li{
+			float: left;
+		}
+		ul li img{
+			width: 490px;
+			vertical-align: middle;
+		}
+		.box .arr{
+			position: absolute;
+			display: none;
+			width: 100%;
+			top:50%;
+			margin-top: -20px;
+		}
+		.box .arr span{
+			float: left;
+			color: #fff;
+			text-align: center;
+			font: 700 30px/40px "黑体";
+			width: 40px;
+			height: 40px;
+			background-color: #000;
+			opacity: 0.3;
+			cursor: pointer;
+		}
+		.box .arr span.right{
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="demo" id="demo">
+		<div class="box">
+			<ul id="imgs">
+				<li><img src="images/1.jpg" alt=""></li>
+				<li><img src="images/2.jpg" alt=""></li>
+				<li><img src="images/3.jpg" alt=""></li>
+				<li><img src="images/4.jpg" alt=""></li>
+				<li><img src="images/5.jpg" alt=""></li>
+			</ul>
+			<div class="arr" id="arr">
+				<span class="left"><</span>
+				<span class="right">></span>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		var arr = document.getElementById('arr');
+		var arrs = arr.children;
+		var demo = document.getElementById('demo');
+		var imgs = document.getElementById('imgs');
+
+		var target = 0;
+		var leader = 0;
+		var timer = null;
+		var num =0;
+		demo.onmouseover = function(){
+			arr.style.display = "block";
+		}	
+		demo.onmouseout = function(){
+			arr.style.display = "none";
+		}
+		for(var k in arrs){
+			arrs[k].onclick = function(){
+				clearInterval(timer);
+				this.className =="left" ? num++ : num--;
+				console.log(num);
+				if(num==1){
+					num = 0;
+				}
+				if(num==-5){
+					num = -4;
+				}
+				target = 490*num;
+				timer = setInterval(autoPlay,30);
+			}
+		}
+		function autoPlay(){
+			leader = leader + (target - leader)/10;
+			imgs.style.left = leader + "px";
+		}
+		
+	}
+</script>

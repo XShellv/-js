@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转木马</title>
+	<script src="多属性缓动封装.js"></script>
+	<style>
+		*{margin: 0;padding: 0;}
+		.slider{
+			position: relative;
+			width: 1200px;
+			height: 500px;
+		}
+		img{
+			width: 100%;
+			vertical-align: middle;
+		}
+		ul{
+			list-style: none;
+		}
+		ul li{
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		.demo{
+			width: 1200px;
+			height: 500px;
+			margin: 100px auto;
+		}
+		.arr{
+			position: absolute;
+			opacity: 0;
+			width: 1200px;
+			top: 45px;
+		}
+		.arr a{
+			width: 76px;
+			height: 112px;
+		}
+		.arr a:first-child{
+			float: left;
+			background:url(images/prev.png) no-repeat;
+		}
+		.arr a:last-child{
+			float: right;
+			background:url(images/next.png) no-repeat;
+		}
+	</style>
+</head>
+<body>
+	<div class="demo" id="demo">
+		<div class="slider">
+			<ul>
+				<li><a href="#"><img src="images/slidepic1.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/slidepic2.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/slidepic3.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/slidepic4.jpg" alt=""></a></li>
+				<li><a href="#"><img src="images/slidepic5.jpg" alt=""></a></li>
+			</ul>
+		</div>
+		<div class="arr" id="arr">
+			<a href="#" class="left"></a>
+			<a href="#" class="right"></a>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	<!-- css样式布局 -->
+	var pics = document.getElementsByTagName('ul')[0].children;
+	var jsonStyle = [
+		{width:600,top:70,left:0,opacity:0.8,zIndex:3},
+		{width:800,top:100,left:200,opacity:1,zIndex:4},
+		{width:600,top:70,left:600,opacity:0.8,zIndex:3},
+		{width:400,top:20,left:750,opacity:0.2,zIndex:2},
+		{width:400,top:20,left:50,opacity:0.2,zIndex:2}
+	]
+	// 鼠标经过盒子显示隐藏arr
+	var demo = document.getElementById('demo');
+	// alert(demo)
+	var arr = document.getElementById('arr');
+	demo.onmouseover = function(){
+		animate(arr,{opacity:100});
+	}
+	demo.onmouseout = function(){
+		animate(arr,{opacity:0});
+	}
+	/* 鼠标点击交换json*/
+	var arrows = arr.children;
+	for(var k in arrows){
+		var jieliu = true;
+		arrows[k].onclick  = function(){
+			if(jieliu){
+				jieliu = false;
+				if(this.className == "right"){
+					jsonStyle.unshift(jsonStyle.pop());
+				}
+				else{
+					jsonStyle.push(jsonStyle.shift());
+				}
+				change()
+			}
+			
+			
+		}
+	}
+
+	function change(){
+		for(var i=0; i<pics.length;i++){
+			animate(pics[i],{
+				width:jsonStyle[i].width,
+				top:jsonStyle[i].top,
+				left:jsonStyle[i].left,
+				opacity:jsonStyle[i].opacity,
+				zIndex:jsonStyle[i].zIndex
+			},function(){jieliu = true})
+		}
+	}
+	change()
+</script>

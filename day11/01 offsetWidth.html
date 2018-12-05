@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload = function(){
+			var demo = document.getElementById('demo');
+			//width+padding-left+padding-right+border
+			console.log(demo.offsetWidth,typeof(demo.offsetWidth));   //324 number类型
+			//height+padding-top+padding-bottom+border 
+			console.log(demo.offsetHeight,typeof(demo.offsetHeight)); //324 number类型
+			//width
+			console.log(demo.style.width); //300px  string类型
+			console.log(demo.style.height); //300px  string类型
+		}
+	</script>
+	<style>
+		#demo{
+		}
+	</style>
+</head>
+<body>
+	<div id="demo" style="width: 300px;height: 300px;padding: 10px;border: 2px solid red">
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+		asdadadasddasd
+	</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload = function(){
+			var sel =  document.getElementById('sel');
+			var opts =sel.children;
+			var xz = document.getElementById('xz');
+			var len = document.getElementById('len');
+			var info = document.getElementById('info');
+			// alert(opts.length);
+			var contents = [
+			"短途出行、学习计划都会给你今天精神领域带来一丝慰藉，今天要避免沉溺于一些娱乐活动；团队中或...<a href='#'>[详细]</a>",
+			"今天在人际交流中容易发生矛盾，有一方过于自我固执导致交流不顺。记住与同事、领导交流的时候必...<a href='#'>[详细]</a>",
+			"今天在人际相处中非常顺利，会有很多人来帮助你，并且有比较权威的人来给你鼓励，你也很可能接触...<a href='#'>[详细]</a>",
+			"今天正财运不旺，有可能迷迷糊糊的损失一笔钱，或者鬼使神差的买了不需要的东西；人际方面受克严...<a href='#'>[详细]</a>",
+			"今天是比较疲惫的一天，很容易脑子糊涂做出错误的错误的决定；今天碰到的客户也是脾气爆操固执的...<a href='#'>[详细]</a>",
+			"今天思想上有些混沌，做事容易出错。尤其在合作关系中，容易做出错误的决定后者感到疲惫。学业方...<a href='#'>[详细]</a>",
+			"今天不是一个可以张扬自己个性的日子，否则给自己带来的不好后果会持续一段时间；不要盲目进行投...<a href='#'>[详细]</a>",
+			"工作中会出现一些和你意见不合的人。你是个行动派，做起事来比较执着雷厉风行。但是对方却希望多...<a href='#'>[详细]</a>",
+			"今天在工作中容易受到比较不寻常的困难，因前提计划不合理导致的问题爆发出来让你措手不及；工作...<a href='#'>[详细]</a>",
+			"今天有点眼高手低，注意工作中一些小失误，控制欲会有些强，对某些问题的真相想要彻底弄清楚，留...<a href='#'>[详细]</a>",
+			"身体方面多加小心，特别是胃，注意保持良好的就餐规律。家宅方面，容易出现固执自我的人，破坏原...<a href='#'>[详细]</a>",
+			"今天的你有点迷糊，工作上容易出错后者力不从心。出行的运势不错，很顺利。学业上也能很轻松。部...<a href='#'>[详细]</a>"
+			]
+			var per = [0.5,0.3,0.56,0.78,0.8,0.8,0.9,0.7,0.5,0.6,0.45,0.89];
+			sel.onchange = function(){
+				info.innerHTML = contents[this.value];
+				len.style.width = 80*per[this.value]+"px";
+				xz.style.backgroundPosition = "0 "+(-50)*this.value+"px";
+			}
+		}
+	</script>
+	<style>
+		body{
+			font: 12px SimSun,"Arial Narrow",HELVETICA;
+		}
+		.demo{
+			width: 278px;
+			height: 175px;
+			padding-bottom: 6px;
+			border: 1px solid #ccc;
+			margin: 100px auto;
+		}
+		.w{
+			padding: 0 19px;
+		}
+		.demo .dt{
+			width: 100%;
+			height: 35px;
+		}
+
+		a{
+			color: #0873c0;
+			text-decoration: none;
+		}
+		.demo .dt a{
+		    font-size: 14px;
+		    margin-top: 8px;
+		    text-indent: 15px;
+		    float: left;
+		    font-weight: bold;
+		}
+		.demo .dd1{
+			width: 278px;
+			height: 50px;
+			padding-left:19px;
+		}
+		.demo .dd1 span.xz{
+			width: 50px;	
+			height: 50px;	
+			float: left;
+			background:url(images/Icon.png)no-repeat;
+		}
+		.demo .dd1 .content{
+			float: left;
+			margin-left: 10px;
+		}
+		.demo .dd1 .ys{
+			margin-top: 2px;
+		}
+		.demo .dd1 .ys .pic{
+			background:url(images/yunshi.png)no-repeat;
+		}
+		.demo .dd1 .ys .pic i{
+			float: left;
+			width: 49px;
+			height: 100%;
+			background:url(images/yunshi.png)no-repeat left bottom;
+		}
+		.demo .dd1 .ys span{
+			display: inline-block;
+			font-size: 12px;
+			height: 18px;	
+			width: 65px;
+		}
+		.demo .dd1 .ys .pic{
+			width: 80px;	
+			height: 13px;	
+			margin-top: 5px;
+		}
+		.demo .dd2 p{
+			font-size: 14px;
+			line-height: 26px;
+			margin: 14px 0;
+			color: #323f5a;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="demo">
+		<div class="dt"><a href="#">星座运势</a></div>
+		<div class="dd1 w">
+			<span class="xz" id="xz"></span>
+			<div class="content">
+				<select name="" id="sel">
+					<option value="0">白羊座(03.21-04.19)</option>
+					<option value="1">金牛座(04.20-05.20)</option>
+					<option value="2">双子座(05.21-06.21)</option>
+					<option value="3">巨蟹座(06.22-07.22)</option>
+					<option value="4">狮子座(07.23-08.22)</option>
+					<option value="5">处女座(08.23-09.22)</option>
+					<option value="6">天秤座(09.23-10.23)</option>
+					<option value="7">天蝎座(10.24-11.22)</option>
+					<option value="8">射手座(11.23-12.21)</option>
+					<option value="9">摩羯座(12.22-01.19)</option>
+					<option value="10">水瓶座(01.20-02.18)</option>
+					<option value="11">双鱼座(02.19-03.20)</option>
+				</select>
+				<div class="ys">
+					<span>今日运势：</span>
+					<span class="pic">
+						<i id="len"></i>
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="dd2 w">
+			<p id="info">
+				恋爱运大吉，单身的双鱼座能认识非常优质的异性，有些长期交往双鱼座可能会选择安定下来进入婚姻...
+				<a href="#">[详细]</a>
+			</p>
+		</div>
+	</div>
+</body>
+</html>

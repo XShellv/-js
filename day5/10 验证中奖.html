@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="text" value="请输入.." id="input">
+	<button id="btn">查询</button>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		function $(id){return document.getElementById(id);}
+		var input = $("input");
+		var btn = $("btn");
+		// 获取搜索框的值
+		btn.onclick = function(){
+			var val = input.value;
+			String(val)=="刘德华" ? alert("恭喜") : alert("查无此人");
+		}
+	}
+	
+
+</script>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="demo">
+		字符串:<input type="text" id="txt1">
+		索引的字符串: <input type="text" id="txt2">
+		<button id="btn1">从前面开始索引</button>
+		<button id="btn2">从后面开始索引</button>
+	</div>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		function $(id){return document.getElementById(id)}
+		btn1.onclick = function(){
+			var val1 = $("txt1").value;
+			var val2 = $("txt2").value;
+			alert(val1.indexOf(val2))
+		}
+		btn2.onclick = function(){
+			var val1 = $("txt1").value;
+			var val2 = $("txt2").value;
+			alert(val1.lastIndexOf(val2))
+		}
+	}
+</script>

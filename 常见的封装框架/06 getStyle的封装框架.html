@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#demo{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100px;
+			height: 100px;
+			background: #000;
+			opacity: 0.3;
+			font-size: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">我是demo</div>
+</body>
+</html>
+<script>
+	var demo = document.getElementById('demo');
+	function getStyle(obj,attr){
+		if(obj.currentStyle){
+			return obj.currentStyle[attr];
+		}
+		else{
+			return window.getComputedStyle(obj,null)[attr]
+		}
+		
+	}
+	console.log(getStyle(demo,"width"));
+</script>

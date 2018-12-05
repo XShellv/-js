@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#demo{
+			width: 330px;
+			height: 30px;
+			margin: 100px auto;
+			background: url(bg.jpg) no-repeat;
+			padding-left: 10px;
+		}
+		#demo ul{
+			list-style: none;
+		}
+		#demo ul li {
+			float: left;
+			width: 100px;
+			height: 30px;
+			background:url("libg.jpg") no-repeat;
+			margin-right: 10px;
+			text-align: center;
+			line-height: 30px;
+			cursor: pointer;
+		}
+		#demo ul li ul{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<ul id="List">
+			<li>一级菜单
+				<ul>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单
+				<ul>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+			<li>一级菜单
+				<ul>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+					<li>二级菜单</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
+<script>
+	function List(id) {
+	 	this.id = document.getElementById(id);
+	 	this.lis = this.id.children;
+	} 
+	// init初始化(要做什么事?)
+	List.prototype.init = function(){
+		var that = this;
+		for(var i = 0;i<this.lis.length;i++){
+			this.lis[i].index = i;
+			this.lis[i].onmouseover = function(){
+				// show()
+				that.show(this.children[0]);
+			}
+			this.lis[i].onmouseout = function(){
+				// hide()
+				that.hide(this.children[0]);
+			}
+		}
+	};
+
+	List.prototype.show = function(obj) {
+		obj.style.display = "block";
+		// body...
+	};
+	List.prototype.hide = function(obj) {
+		obj.style.display = "none";
+		// body...
+	};
+
+
+	var List = new List("List");
+	List.init();
+</script>

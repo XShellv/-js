@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="animate().js"></script>
+	<style>
+		*{margin: 0;padding: 0;}
+		#all{
+			position: relative;
+			width: 500px;
+			height: 200px;
+			padding: 7px;
+			border: 1px solid #ccc;
+			margin: 100px auto;
+		}
+		#box{
+			position: relative;
+			overflow: hidden;
+			height: 100%;
+		}
+		ul{
+			position: absolute;
+			left: 0;
+			list-style: none;
+			width:800%;
+		}
+		ul li{
+			float: left;
+		}
+		#box2{
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+		}
+		#box2 ol{
+			list-style: none;
+		}
+		#box2 ol li{
+			float: left;
+			width: 20px;
+			height: 20px;
+			background-color: #fff;
+			line-height: 20px;
+			text-align: center;
+			margin-left: 10px;
+			cursor: pointer;
+			border: 1px solid #ccc;
+		}
+		#box2 ol li.current{
+			background-color:yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="all">
+		<div id="box">
+			<ul>
+				<li><img src="images/taobao/1.jpg" alt=""></li>
+				<li><img src="images/taobao/2.jpg" alt=""></li>
+				<li><img src="images/taobao/3.jpg" alt=""></li>
+				<li><img src="images/taobao/4.jpg" alt=""></li>
+				<li><img src="images/taobao/5.jpg" alt=""></li>
+			</ul>
+		</div>
+		<div id="box2">
+			<ol>
+				<li class="current">1</li>
+				<li>2</li>
+				<li>3</li>
+				<li>4</li>
+				<li>5</li>
+			</ol>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	function $(id){return document.getElementById(id);}
+	var ollis = $("box2").children[0].children;
+	var ul = $("box").children[0];
+	var target = 0; 
+	
+
+	// 克隆节点
+	var li = ul.children[0].cloneNode(true);
+	ul.appendChild(li);
+
+	for(var i = 0; i<ollis.length;i++){
+		ollis[i].index = i;
+		ollis[i].onmouseover = function(){
+			for(var i = 0; i<ollis.length;i++){
+				ollis[i].className = "";
+			}
+			this.className = "current";
+			square = key = this.index;
+			// 动画部分
+			target =  $("box").offsetWidth*(-key);
+			animate(ul,target);
+		}
+	}
+
+	var square = 0; //控制小方块
+	var key = 0;  //控制播放张数
+	var timer = null;
+
+
+	timer = setInterval(autoPlay,1000);
+	function autoPlay(){
+		key+=1;
+		if(key>=ul.children.length){
+			key = 1;
+			ul.style.left = 0;
+		}
+		target =  $("box").offsetWidth*(-key);
+		animate(ul,target);
+
+
+		square+=1;
+		if(square>ollis.length - 1){
+			square = 0;
+		}
+		for(var i = 0; i<ollis.length;i++){
+			ollis[i].className = "";
+		}
+		ollis[square].className = "current";
+	}
+
+	$("all").onmouseover = function(){
+		clearInterval(timer)
+	}
+	$("all").onmouseout = function(){
+		timer = setInterval(autoPlay,1000);
+	}
+</script>

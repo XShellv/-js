@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		.box{
+			width: 600px;
+			height: auto;
+			border: 1px solid #000;
+			margin: 100px auto;
+			padding: 30px 0;
+		}
+		textarea{
+			width: 450px;
+			resize: none;
+		}
+		ul {
+			list-style: none;
+			width: 100%;
+		}
+		ul li{
+			width: 450px;
+			height: 30px;
+			margin-left: 80px;
+			line-height: 30px;
+			border-bottom: 1px dashed #ccc;
+		}
+		ul li a{
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<span>微博发布:</span>
+		<textarea name="" id="txt" cols="30" rows="10"></textarea>
+		<button id="btn">发布</button>
+		<ul id="collections">
+		</ul>
+	</div>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		var collections = document.getElementsByTagName('ul')[0];
+		var txt = document.getElementById('txt');
+		var btn = document.getElementById('btn');
+
+		btn.onclick = function(){
+			var comment = txt.value;
+			var li = document.createElement('li');
+			li.innerHTML = txt.value+"<a href='javascript:;'>删除</a>";
+
+			if(comment ==""){
+				alert("输入不能为空");
+				return false;
+			}
+
+			txt.value = "";
+			// 当前ul存在li，将li插在当前第一个li的前面。否则追加li
+			var lis = collections.children;
+			var firstLi = lis[0];
+			if(firstLi){
+				collections.insertBefore(li,firstLi);
+			}
+			else{
+				collections.appendChild(li);
+			}
+
+			// 删除评论
+			var dels = collections.getElementsByTagName('a');
+			for(var k in dels){
+				dels[k].onclick = function(){
+					var parerntLi = this.parentNode;
+					collections.removeChild(parerntLi); 
+				}
+			}
+		}
+	}
+</script>

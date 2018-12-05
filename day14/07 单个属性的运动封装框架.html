@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+			position: absolute;
+			left: 0;
+			width: 100px;
+			height: 100px;
+			background-color:orange;
+		}
+	</style>
+</head>
+<body>
+	<button id="btn1">200</button>
+	<button id="btn2">400</button>
+	<div id="box"></div>
+</body>
+</html>
+<script>
+	function $(id){return document.getElementById(id);}
+	$("btn1").onclick = function(){
+		animate($("box"),"left",200);
+	}
+	$("btn2").onclick = function(){
+		animate($("box"),"top",400)
+	}
+	function animate(obj,attr,target){
+		clearInterval(obj.timer);
+		obj.timer = setInterval(function(){
+			var current = parseInt(getStyle(obj,attr));
+			var step = (target - current)/10;
+			step = step>0 ? Math.ceil(step) : Math.floor(step);
+			obj.style[attr] =  current + step + "px";
+		},30)
+	}
+	function getStyle(obj,attr){
+		if(obj.currentStyle){
+			return obj.currentStyle[attr];
+		}
+		else{
+			return window.getComputedStyle(obj,null)[attr];
+		}
+	}
+</script>

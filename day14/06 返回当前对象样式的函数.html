@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+            left: 10px;
+            position: absolute;
+            top: 20px;
+            opacity: .3
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>
+<script>
+	var box =document.getElementById('box');
+	function getStyle(obj,attr){
+		if(obj.currentStyle){
+			return obj.currentStyle[attr];
+		}
+		else{
+			return window.getComputedStyle(obj,null)[attr];
+		}
+	}
+	console.log(getStyle(box,"width"))
+	console.log(getStyle(box,"opacity"))
+	console.log(getStyle(box,"left"))
+	console.log(getStyle(box,"top"))
+</script>

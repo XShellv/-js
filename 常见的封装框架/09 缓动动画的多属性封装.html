@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		#box{
+			width: 100px;
+			height: 100px;
+			background-color: skyblue;
+			position: absolute;
+			left: 0;
+			opacity: 1;
+			filter: alpha(opacity = 100)
+		}
+	</style>
+</head>
+<body>
+	<button>200</button>
+	<button>400</button>
+	<div id="box"></div>
+</body>
+</html>
+<script>
+	var btn1 = document.getElementsByTagName('button')[0];
+	var btn2 = document.getElementsByTagName('button')[1];
+	var box = document.getElementById('box');
+	btn1.onclick = function(){
+		animate(box,{width:400,height:400,left:800,opacity:.3,zIndex:4},function(){alert("到位啦")});
+	}
+	btn2.onclick = function(){
+		animate(box,"left",400);
+	}
+	// 缓动动画
+	function animate(obj,json,fn){
+		clearInterval(obj.timer);
+		obj.timer = setInterval(function(){
+			var flag = true
+			for(var attr in json){
+				// 当attr为opacity时
+				var current = 0;
+				var target = 0;
+				if(attr == "opacity"){
+					if(attr in obj.style){
+						current = parseInt(getStyle(obj,attr)*100);
+					}
+					else{
+						strFilter = getStyle(obj,"filter");
+						var chareq = strFilter.lastIndexOf("=")+1
+						current = parseInt(strFilter.substr(chareq));
+						console.log(current)
+					}
+					target = json[attr]*100;	
+				}
+				else{
+					current = parseInt(getStyle(obj,attr));
+					target = json[attr];
+				}
+				var step = ( target - current)/10;
+				step = step>0 ? Math.ceil(step) : Math.floor(step);
+				if(attr == "opacity"){
+					if(attr in obj.style){
+						obj.style[attr] = (current + step)/100; //current == 100  step == -7
+					}
+					else{
+						obj.style["filter"] = "alpha(opacity = "+ (current + step)+")";
+					}
+				}
+				else if(attr == "zIndex"){
+					obj.style[attr] = target;
+				}
+				else{
+					obj.style[attr] = current + step + "px";
+				}
+				if(current != target){
+					flag = false;
+				}
+			}
+			if(flag){
+				clearInterval(obj.timer);
+				if(fn){
+					fn();
+				}
+			}
+			
+		},10)
+	}
+
+	// 获得属性
+	function getStyle(obj,attr){
+		if(obj.currentStyle){
+			return obj.currentStyle[attr];
+		}
+		else{
+			return window.getComputedStyle(obj,null)[attr];
+		}
+	}
+</script>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script>
+		window.onload = function(){
+			var txt =document.getElementById('txt');
+			var mes = document.getElementById('mes');
+			txt.oninput = function(){
+				mes.style.display = "none";
+				if(txt.value == ""){
+					mes.style.display = "block";
+				}
+			}
+		}
+	</script>
+	<style>
+		.search{
+			position: relative;
+			margin: 100px auto;
+			width: 300px;
+			height: 30px;
+		}
+		input{
+			position: absolute;
+			width: 200px;
+			height: 25px;
+			padding:1px 0;
+		}
+		label{
+			position: absolute;
+			text-align: center;
+			font-size: 12px;
+			color: #ccc;
+			left: 20px;
+			top:8px;
+			cursor: text;
+		}
+	</style>
+</head>
+<body>
+	<div class="search">
+		<input type="text" id="txt">
+		<label for="txt" id="mes">必败的国际大牌</label>
+	</div>
+</body>
+</html>

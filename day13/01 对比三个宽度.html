@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#demo{
+			width: 200px;
+			height: 200px;
+			padding: 100px;
+			margin:100px auto;
+			border-top: 20px solid red;
+			border-bottom: 10px solid red;
+		}
+		
+	</style>
+</head>
+<body>
+	<div id="demo">
+		文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容
+		文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内
+	</div>
+</body>
+</html>
+<script>
+	var demo = document.getElementById('demo');
+	console.log("offsetHeight:",demo.offsetHeight);
+	console.log("clientHeight:",demo.clientHeight);
+	console.log("scrollHeight:",demo.scrollHeight);
+</script>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{margin: 0;padding: 0;}
+		.box1{
+			padding-left: 30px;
+			height: 30px;
+			border-bottom: 1px solid #369;
+			background-color: #036663;
+		}
+		.box1 a{
+			font-size: 14px;
+			color: #fff;
+			line-height: 31px;
+			text-decoration: none;
+		}
+		.box2{
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			width: 400px;
+			height: 300px;
+			border: 5px solid #eee;
+			margin-left: -205px;
+			margin-top: -155px;
+			box-shadow: 2px 2px 2px 2px #666;
+		}
+		.box2 .head{
+			width: 100%;
+			height: 25px;
+			border-bottom: 1px solid #369;
+			background-color: #7c9299;
+			color: #fff;
+			line-height: 26px;
+			cursor: move;
+		}
+		.box2 .head span:first-child{
+			float: left;
+		}
+		.box2 .head span:last-child{
+			float: right;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<div class="box1">
+		<a href="#">注册信息</a>
+	</div>
+	<div class="box2">
+		<div class="head" id="drag">
+			<span>注册信息（可以拖拽）</span>
+			<span>【关闭】</span>
+		</div>
+	</div>
+</body>
+</html>
+<script>
+	var drag = document.getElementById('drag');
+	drag.onmousedown = function(event){
+		var event = event || window.event;
+		var posX = event.clientX - this.parentNode.offsetLeft - this.parentNode.offsetWidth/2;
+		var posY = event.clientY - this.parentNode.offsetTop - this.parentNode.offsetHeight/2;
+		var that = this;
+		document.onmousemove = function(event){
+			var event = event || window.event;
+			var x = event.clientX - posX;
+			var y = event.clientY - posY;
+			that.parentNode.style.left = x + "px";
+			that.parentNode.style.top = y + "px";
+			window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+		}
+	}
+	document.onmouseup = function(){
+		document.onmousemove = null;
+	}
+</script>

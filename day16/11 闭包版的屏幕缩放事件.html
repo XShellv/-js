@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="demo"></div>
+</body>
+</html>
+<script>
+	var demo = document.getElementById("demo")
+	var num = 0;
+	window.onresize = throttle(function(){
+		// 改写，加入延时setTimeout，30ms后执行函数
+		var clientWidth = document.documentElement.clientWidth || window.innerWidth || document.body.clientWidth || 0;
+		demo.innerHTML = clientWidth;
+		num++
+		console.log(num);
+	},30);
+
+	function throttle(fn,delay){
+		var timer = null;
+		return function(){
+			clearInterval(timer);
+			timer = setTimeout(fn,delay);
+		}
+		
+	}
+		
+</script>

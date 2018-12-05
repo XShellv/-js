@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	function fn() {
+		alert(this);
+	}
+	fn()    //指向window
+
+	function fn(){
+		alert(this)
+	}
+	new fn() //new 关键字可以让 this  指向新的对象 
+
+	function fun(){
+		this.x = 10;
+	}
+	fun();//指向window
+	console.log(window.x)
+
+	function Person(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	var xiaoming = new Person("小明",20);
+	console.log(xiaoming.name,xiaoming.age);
+
+</script>

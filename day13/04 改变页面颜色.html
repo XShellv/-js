@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="client().js"></script>
+	<style>
+	</style>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	window.onload = function(){
+		reSize();
+		window.onresize = reSize; 
+		function reSize(){
+			var clientWidth =  client().width;
+			console.log(clientWidth)
+			if(clientWidth>960){	
+				document.body.style.backgroundColor = "red";		
+			}
+			else if(clientWidth>640){
+				document.body.style.backgroundColor = "green";
+			}
+			else{
+				document.body.style.backgroundColor= "yellow";
+			}
+		}
+	}
+	
+</script>

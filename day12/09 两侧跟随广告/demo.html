@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="../scroll().js"></script>
+	<style>
+		#demo{
+			width: 1000px;
+			margin: 0 auto;
+		}
+		#pic{
+			position: absolute;
+			top: 50px;
+			left: 0;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo">
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+		<p>天王盖地虎，小鸡炖蘑菇</p>
+	</div>
+	<div id="pic"><img src="images/aside.jpg" alt=""></div>
+</body>
+</html>
+<script>
+	var pic = document.getElementById('pic');
+	var leader = 0;
+	var target = 0;
+	var timer = null;
+	var picTop = pic.offsetTop;
+	window.onscroll = function(){
+		clearInterval(timer);
+		target = scroll().top;
+		timer = setInterval(function(){
+			leader = leader + (target - leader)/10;
+			pic.style.top =  leader + picTop +"px"
+		},30)
+	}
+</script>

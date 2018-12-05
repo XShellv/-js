@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	//只要是数组都可以调用同一方法
+	Array.prototype.fun = function() {
+		alert("都可以调用哦")
+	};
+	var demo1 = [];
+	var demo2 = [];
+	demo1.fun();
+	demo2.fun();
+</script>

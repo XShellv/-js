@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	.box{
+		position: relative;
+		width: 300px;
+		height: 500px;
+		margin: 100px;
+		border: 1px solid red;
+	}
+	.content{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 277px;
+		padding:5px 18px 5px 5px; 
+	}
+	.drag{
+		position: absolute;
+		
+		width: 100%;
+		background-color:red;
+		border-radius:9px;
+		cursor: pointer;
+	}
+	.scroll{
+		position: absolute;
+		background-color: #eee;
+		top: 0;
+		right: 0;
+		height: 100%;
+		width: 18px;
+	}
+	</style>
+</head>
+<body>
+	<div class="box" id="box">
+		<div class="content" id="content">
+			文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容文字内容
+		</div>
+		<div class="scroll">
+			<div class="drag" id="drag"></div>
+		</div>
+		
+	</div>
+</body>
+</html>
+<script>
+	var drag = document.getElementById('drag');
+	var box = document.getElementById('box');
+	var content = document.getElementById('content');
+	// 内容高度*滚动条高度 = 容器高度*容器高度 
+	drag.style.height = box.offsetHeight*box.offsetHeight/content.offsetHeight + "px";
+
+	drag.onmousedown = function(event){
+		var event = event || window.event
+		var pos = event.clientY - this.offsetParent.offsetTop - this.offsetTop;
+		var that = this;
+		document.onmousemove = function(event){
+			var event = event || window.event;
+			var y = event.clientY - that.offsetParent.offsetTop - pos;
+			if(y<=0){
+				y = 0;
+			}
+			else if(y>=that.offsetParent.offsetHeight - that.offsetHeight){
+				y = that.offsetParent.offsetHeight - that.offsetHeight
+			}
+			
+			content.style.top = -y*(content.offsetHeight - box.offsetHeight )/(that.offsetParent.offsetHeight-that.offsetHeight) + "px";
+			that.style.top = y + "px";
+			
+			window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+		}
+	}
+	document.onmouseup = function(){
+		document.onmousemove = null;
+	}
+</script>

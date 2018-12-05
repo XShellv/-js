@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<input type="file" id="file"><span></span>
+</body>
+</html>
+<script>
+	window.onload = function(){
+		var file = document.getElementById('file');
+		var span = document.getElementsByTagName('span')[0];
+		file.onchange = function(){
+			var val = this.value; //文件路径
+			var index = val.lastIndexOf(".");
+			var targetStr = val.substr(index+1).toUpperCase();
+			if(targetStr == "JPG" || targetStr =="PNG"){
+				span.innerHTML = "格式正确";
+			}
+			else{
+				span.innerHTML = "格式错误";
+			}
+		}
+	}
+</script>

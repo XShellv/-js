@@ -1,0 +1,36 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+</html>
+<script>
+	function client(){
+		// ie9 +  最新浏览器
+		if(window.innerWidth !=null){
+			return {
+				"width": window.innerWidth,
+				"height":window.innerHeight
+			}
+		}
+		// 标准浏览器
+		else if(document.compatMode == "CSS1compat1"){
+			return{
+				"width": document.documentElement.clientWidth,
+				"height":document.documentElement.clientHeight
+			}
+		}
+		// 怪异浏览器
+		return{
+			"width": document.body.clientWidth,
+			"height":document.body.clientHeight
+		}
+	}
+	window.onresize = function(){
+		console.log(client().width)
+	}
+</script>

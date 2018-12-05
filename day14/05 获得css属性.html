@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		#box{
+			width: 100px;
+			height: 100px;
+			background-color: green;
+			opacity: .3;
+			padding: 10px;
+			margin: 100px auto;
+		}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+</body>
+</html>
+<script>
+	var box = document.getElementById('box');
+	console.log(window.getComputedStyle(box,null)["width"]);
+	console.log(window.getComputedStyle(box,null)["height"]);
+	console.log(window.getComputedStyle(box,null)["backgroundColor"]);
+	console.log(window.getComputedStyle(box,null)["opacity"]);
+	console.log(window.getComputedStyle(box,null)["padding"]);
+	console.log(window.getComputedStyle(box,null)["margin"]);
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="demo">我是demo</div>
+	<div class="demo1">我是demo1</div>
+	<div class="demo box">我是demo box</div>
+	<div class="demo">我是demo</div>
+	<div class="demo">我是demo</div>
+</body>
+</html>
+<script>
+	function getClass(classname){
+		// 首先判断浏览器是否支持document.getElementsByClassName
+		if(document.getElementsByClassName){
+			return document.getElementsByClassName(classname);
+		}
+		else{
+			var elements = document.getElementsByTagName('*');
+			console.log(elements.length);
+			var arr = [];
+			for(var i=0; i<elements.length; i++){
+				// 存在demo 的demo box的情况，我们需要判断
+				// console.log(elements[k].className)
+				 var arrClass = elements[i].className.split(" ");
+				 for(var j=0; j<elements.length; j++){
+				 	if(arrClass[j] == classname){
+				 		arr.push(elements[i]);
+				 		console.log(arrClass[j]);
+				 	}
+				 }
+			}
+			return arr;
+		}
+	}
+	var results = getClass("demo");
+	for(var k = 0;k<results.length;k++){
+		results[k].style.backgroundColor = "red";
+	}
+	
+</script>
